@@ -2,28 +2,49 @@
 
 namespace mike;
 
+/**
+ * Class ImageLoader
+ * @package mike
+ */
 class ImageLoader
 {
+    /**
+     * @var string remote image path
+     */
     private $path;
 
+    /**
+     * @var array allowed mime types for image validation after download
+     */
     private $allowedMimeTypes = [
         'image/jpeg',
         'image/png',
         'image/git'
     ];
 
+    /**
+     * @var array allowed file extension for validation download url
+     */
     private $allowedExtensions = [
         'jpg',
         'png',
         'gif'
     ];
 
+    /**
+     * ImageLoader constructor.
+     * @param string $sourcePath remote image path
+     */
     public function __construct($sourcePath)
     {
         $this->validateUrl($sourcePath);
         $this->path = $sourcePath;
     }
 
+    /**
+     * @param string $sourcePath remote image path
+     * @throws \Exception
+     */
     private function validateUrl($sourcePath)
     {
         if(!filter_var($sourcePath, FILTER_VALIDATE_URL)) {
@@ -36,6 +57,10 @@ class ImageLoader
         }
     }
 
+    /**
+     * @param string $destinationPath image destination path
+     * @throws \Exception
+     */
     private function validateImage($destinationPath)
     {
         $image = getimagesize($destinationPath);
@@ -49,6 +74,11 @@ class ImageLoader
         }
     }
 
+    /**
+     * @param string $destinationPath image destination path
+     * @return bool returns true on success
+     * @throws \Exception
+     */
     public function download($destinationPath)
     {
         if($file = fopen($destinationPath, 'w+')) {
