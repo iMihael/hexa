@@ -2,7 +2,8 @@
 
 namespace mike;
 
-class ImageLoader {
+class ImageLoader
+{
     private $path;
 
     private $allowedMimeTypes = [
@@ -17,12 +18,14 @@ class ImageLoader {
         'gif'
     ];
 
-    public function __construct($sourcePath) {
+    public function __construct($sourcePath)
+    {
         $this->validateUrl($sourcePath);
         $this->path = $sourcePath;
     }
 
-    private function validateUrl($sourcePath) {
+    private function validateUrl($sourcePath)
+    {
         if(!filter_var($sourcePath, FILTER_VALIDATE_URL)) {
             throw new \Exception('Wrong url format');
         }
@@ -33,7 +36,8 @@ class ImageLoader {
         }
     }
 
-    private function validateImage($destinationPath) {
+    private function validateImage($destinationPath)
+    {
         $image = getimagesize($destinationPath);
 
         if(!$image) {
@@ -45,7 +49,8 @@ class ImageLoader {
         }
     }
 
-    public function download($destinationPath) {
+    public function download($destinationPath)
+    {
         if($file = fopen($destinationPath, 'w+')) {
             $ch = curl_init($this->path);
             curl_setopt($ch, CURLOPT_FILE, $file);
