@@ -1,0 +1,19 @@
+{
+    "name": "mihael/hexa",
+    "description": "hexa test task",
+    "authors": [
+        {
+            "name": "Michael B.",
+            "email": "dev@mihael.me"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.4.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "mike": "src/"
+        }
+    }
+}
