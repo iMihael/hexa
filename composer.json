@@ -11,9 +11,13 @@
     "require": {
         "php": ">=5.4.0"
     },
+    "require-dev": {
+        "phpunit/phpunit": "5.4.*"
+    },
     "autoload": {
         "psr-4": {
-            "mike\\": "src/"
+            "mike\\": "src/",
+            "mike\\tests\\": "tests/"
         }
     }
 }
